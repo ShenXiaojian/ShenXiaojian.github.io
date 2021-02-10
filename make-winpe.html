@@ -216,8 +216,8 @@
             
             <div class="markdown-body">
               <p>有时<code>Windows</code>蓝屏，无法进入图形界面，尝试了多种方法都无法修复时就需要考虑重装系统。但重装系统之前需要将计算机中重要的资料备份，这时就可以制作一个Win PE（类似于Linux中的live environment）来访问计算机，将计算机中的文件拷贝到外部设备上。</p>
-<h2 id="下载windows-ADK"><a href="#下载windows-ADK" class="headerlink" title="下载windows ADK"></a>下载windows ADK</h2><p>下载<a href="https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/download-winpe--windows-pe" target="_blank" rel="noopener">微软提供的Windows ADK</a>。点击下图中箭头所指的两个按钮并按照提示安装即可。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/shenxiaojian/ImageHost/20210210230829.png" srcset="/img/loading.gif" alt="image-20210210230829304"></p>
+<h2 id="下载Windows-ADK"><a href="#下载Windows-ADK" class="headerlink" title="下载Windows ADK"></a>下载Windows ADK</h2><p>下载<a href="https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/download-winpe--windows-pe" target="_blank" rel="noopener">微软提供的Windows ADK</a>。点击下图中箭头所指的两个按钮并按照提示安装即可。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shenxiaojian/ImageHost/20210210230829.png" srcset="/img/loading.gif" alt="下载Windows ADK"></p>
 <h2 id="copype"><a href="#copype" class="headerlink" title="copype"></a>copype</h2><p>首先通过<code>copype</code>命令创建WinPE所需的工作目录，为下一步的<code>MakeWinPEMededia</code>做准备。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">copype amd64 C:\WinPE_amd64<br></code></pre></td></tr></table></figure>
 <p>说明：<code>amd64</code>指制作的WinPE是64位的，<code>C:\WinPE_amd64</code>就是前面提到地创建WinPE所需的工作目录。</p>
