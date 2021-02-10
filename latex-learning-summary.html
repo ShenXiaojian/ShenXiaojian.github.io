@@ -1,0 +1,459 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon32.ico">
+  <link rel="icon" type="image/png" href="/img/favicon32.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Linux爱好者">
+  <meta name="author" content="Shen Xiaojian">
+  <meta name="keywords" content="vps,linux,hexo,nginx,技术分享">
+  <title>LaTeX学习总结 - Shen Xiaojian</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"www.shenxiaojian.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Shen Xiaojian</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="LaTeX学习总结">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-03-20 10:17" pubdate>
+        2020年3月20日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      13
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">LaTeX学习总结</h1>
+            
+            <div class="markdown-body">
+              <h2 id="1-关于LaTeX"><a href="#1-关于LaTeX" class="headerlink" title="1. 关于LaTeX"></a>1. 关于LaTeX</h2><h3 id="1-1-LaTeX是干什么的？"><a href="#1-1-LaTeX是干什么的？" class="headerlink" title="1.1. LaTeX是干什么的？"></a>1.1. LaTeX是干什么的？</h3><p>格式化输入文本，使其以相同长度的行和特定尺寸的页显示出来（说人话就是排版）。</p>
+<p>但是真正执行格式化（这里的格式化是动词，排版的意思）文本不是LaTeX而是TeX，我们先来说TeX是什么？</p>
+<p>p.s. <code>字处理程序</code>的一个典型代表就是<code>word</code>，通过加入<code>不可见控制字符</code>来实现排版，它和今天的主角LaTeX是截然不同的。</p>
+<h3 id="1-2-TeX是一个程序"><a href="#1-2-TeX是一个程序" class="headerlink" title="1.2. TeX是一个程序"></a>1.2. TeX是一个程序</h3><p>TeX的学名叫<code>文件格式化程序</code>，我们接下来慢慢说。</p>
+<p>我们都知道直接输入到编辑器里的文本显得很单调，大小都是一样的，不信你看看txt文件里的东西。所以我们就像能不能把那些单调的东西看起来像word里的字符那种，可以调大小，加粗这些（当然word和TeX不是一类东西）。</p>
+<p>TeX就是干这个的，可以调整文本中字符的格式（就是大小，加粗，排版等等），生成排版精美的文档。</p>
+<p>具体来说，TeX是通过<code>宏（macro）</code>的方式，用一些“命令”（其实就是具体代码的宏）来实现排版。因此，TeX也是一门编程语言，用户可以用它编写代码，增加格式化程序的某一功能。</p>
+<h3 id="1-2-LaTeX是TeX的简化"><a href="#1-2-LaTeX是TeX的简化" class="headerlink" title="1.2. LaTeX是TeX的简化"></a>1.2. LaTeX是TeX的简化</h3><p>TeX定义的宏，还是不够抽象，不够接近我们的自然语言，因此，普通人用起来可能有难度，或者觉得有些繁琐。因此，Leslie Lamport教授，在TeX的基础上也定义了一套宏，更加接近自然语言，更加简洁，这也是为什么命名为LaTeX。</p>
+<h2 id="2-安装软件"><a href="#2-安装软件" class="headerlink" title="2. 安装软件"></a>2. 安装软件</h2><p>说完了理论，我们来点实际的，装软件！</p>
+<h3 id="2-1-安装LaTeX发行版"><a href="#2-1-安装LaTeX发行版" class="headerlink" title="2.1. 安装LaTeX发行版"></a>2.1. 安装LaTeX发行版</h3><p>由于我是<code>windows</code>系统，就安装了<code>TeXLive</code>，这个发行版对新手比较友好，而且遇到的困难，网上有很多类似的教程。</p>
+<p>至于安装TeXLive的方法网上有很多，而且就简单的几步，我就不啰嗦了。（明明是觉得截图放在图床上麻烦！！！）</p>
+<h3 id="2-2-安装TeXstudio"><a href="#2-2-安装TeXstudio" class="headerlink" title="2.2. 安装TeXstudio"></a>2.2. 安装TeXstudio</h3><p>有了LaTeX的发行版，便可以用编辑器可以编辑，然后用TeX程序生成排版后的文档，但是这样比较麻烦。</p>
+<p>工欲善其事必先利其器，因此，我们可以安装一款LaTeX编辑器（集成了编辑、代码自动拼写检查、语法高亮等功能），只需点一点图标便可以实现上述复杂的功能。</p>
+<p>这里推荐跨平台开源的TeXstuido，<a href="http://texstudio.sourceforge.net/" target="_blank" rel="noopener">官网</a>直接下载，一路next即可。</p>
+<h2 id="3-LaTeX基础知识"><a href="#3-LaTeX基础知识" class="headerlink" title="3. LaTeX基础知识"></a>3. LaTeX基础知识</h2><h3 id="3-1-文本与命令"><a href="#3-1-文本与命令" class="headerlink" title="3.1. 文本与命令"></a>3.1. 文本与命令</h3><p>一个文档的核心任务就是存储文件，而文件是由一个个字符组成的，字符组成单词，单词组成句子，句子组成段落等等。我们可以把字符、单词、句子、段落都当成一个个基本单位，不过级别不一样。</p>
+<p>区分单词与单词间的分隔是空格或者回车，即使有多个也按一个计算。</p>
+<p>区分段落与段落间的分割是空行，一个或多个均可，同样，即使有多个也只算一个。</p>
+<p>有了我们要记录的文本还不够，为了生成的文件的美观，我们需要排版，而告诉计算机怎么做，就需要我们在文本中加入格式化命令，用<code>\</code>和普通文本区分。</p>
+<h3 id="3-2-LaTeX文档结构"><a href="#3-2-LaTeX文档结构" class="headerlink" title="3.2. LaTeX文档结构"></a>3.2. LaTeX文档结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs latex">\documentclass[选项]&#123;类&#125;<br>全局参数<br>\begin&#123;document&#125;<br>正文和局部参数<br>\end&#123;document&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="3-3-LaTeX的三种处理模式"><a href="#3-3-LaTeX的三种处理模式" class="headerlink" title="3.3. LaTeX的三种处理模式"></a>3.3. LaTeX的三种处理模式</h3><ol>
+<li>段落模式：把输入文本当成一队要被断开成页、段落、句子、单词的长字符串。</li>
+<li>数学模式：用来格式化公式，其中，空白会被忽略。</li>
+<li>LR模式：类似于段落模式，但要求在该模式中的字符必须在同一行。</li>
+</ol>
+<p>其中，最普遍使用的是段落模式，根据需要变成数学模式和LR模式，然后完成任务再变回段落模式。</p>
+<h3 id="3-4-用LaTeX排版生成文档流程"><a href="#3-4-用LaTeX排版生成文档流程" class="headerlink" title="3.4. 用LaTeX排版生成文档流程"></a>3.4. 用LaTeX排版生成文档流程</h3><ol>
+<li><p>用编辑器编辑好文本文件（随便哪种编辑器均可），文本文件中应包含实际要展示的内容（比如你的文章之类的）和用字符表示的LaTeX命令，文件后缀为<code>.tex</code>。<br>调用LaTeX命令如下，tex后缀可省：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> latex sample.tex</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>以<code>.tex</code>为后缀的文本文件交由LaTeX处理，让TeX程序按照LaTeX定义的宏替换，替换结束后生成一个后缀为<code>.dvi</code>的文件，一个由格式化后的文本和所需的字符集有关信息组成的与设备无关的文件，又叫做元文件（metafile）。</p>
+</li>
+<li><p>由打印机驱动程序，将元文件转化为可以在打印机上输出的形式，最后执行打印，文档打印完成。</p>
+</li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%96%87%E5%AD%97%E6%8E%92%E7%89%88/">文字排版</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-NC-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/hexo-next-theme-adds-comment-feature.html">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Hexo的NexT主题添加评论功能</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/linux-common-command.html">
+                        <span class="hidden-mobile">Linux常用命令整理</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

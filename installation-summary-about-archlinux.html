@@ -1,0 +1,479 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon32.ico">
+  <link rel="icon" type="image/png" href="/img/favicon32.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Linux爱好者">
+  <meta name="author" content="Shen Xiaojian">
+  <meta name="keywords" content="vps,linux,hexo,nginx,技术分享">
+  <title>ArchLinux安装小结 - Shen Xiaojian</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"www.shenxiaojian.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Shen Xiaojian</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="ArchLinux安装小结">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-07-13 12:18" pubdate>
+        2020年7月13日 中午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.7k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      19
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">ArchLinux安装小结</h1>
+            
+            <div class="markdown-body">
+              <h2 id="1-说在前面"><a href="#1-说在前面" class="headerlink" title="1. 说在前面"></a>1. 说在前面</h2><p>参考<a href="https://wiki.archlinux.org/index.php/Installation_guide" target="_blank" rel="noopener">ArchWiki的Installation guide</a>，花了1天多的时间安装好了Arch Linux。对装系统也有了全新的认识。安装系统就是把可执行文件和配置文件存到外部存储设备，和配置引导方式使得固件可以正确调用引导程序启动操作系统。</p>
+<p>因此，操作系统能否正常运行的核心就两点：</p>
+<ol>
+<li>是否把可执行文件和配置文件正确的放到硬盘上</li>
+<li>是否正确的引导</li>
+</ol>
+<p>现在的计算机都是遵守存储程序原理，操作系统的运行也就是从硬盘中拿存储的程序，按照既定的程序和配置文件运行。因此，如果想影响一个操作系统，改变硬盘中的文件内容即可。</p>
+<p>另外辨析几个概念：</p>
+<p>BISO和UEFI都是固件的规范（接口），MBR和GPT都是分区表和分区方案。但是UEFI和GPT更新一些，用来继承前者。</p>
+<h2 id="2-把系统存到外部存储设备"><a href="#2-把系统存到外部存储设备" class="headerlink" title="2. 把系统存到外部存储设备"></a>2. 把系统存到外部存储设备</h2><p>为了能通过Live Environment来安装相应的内容到硬盘，首先要对硬盘进行分区、格式化、挂载，写入系统软件。</p>
+<h3 id="2-1-Partition-the-disks"><a href="#2-1-Partition-the-disks" class="headerlink" title="2.1. Partition the disks"></a>2.1. Partition the disks</h3><p>分区部分主要参考<a href="https://wiki.archlinux.org/index.php/Partitioning" target="_blank" rel="noopener">ArchWiki的Partitioning</a>。关于分区表的选取，分区方案的选取和分区软件的使用，wiki里已经很详细了。下面写些自己认为重要的点。</p>
+<p><strong>首先，什么是分区？</strong></p>
+<blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Disk_partitioning" target="_blank" rel="noopener">Partitioning</a> a block device (e.g. a hard disk) divides the available storage space into sections that can be managed independently. </p>
+</blockquote>
+<p>按我的理解，每一个分区都是一个独立的文件系统（File System 缩 fs），且对应于分区表中的一条记录。这也是为什么当其中一个分区损坏不会对其他分区造成影响。因为他们属于不同的文件系统。文件系统的具体内容在格式化部分讲。</p>
+<p><strong>其次，分区表是什么，选哪种？</strong></p>
+<p>分区表是用来存储分区方案的，即你对你的硬盘是怎么分区的，分成了几个区，每个区多大，是什么格式等等。主要的分区表有两种，一种是MBR（Master Boot Record），另一种是GPT（GUID Partition Table）。这两种分区表都是出自Intel之手，且GPT是用来继承MBR的。因此只要电脑条件允许，建议选择GPT类型。另外多啰嗦一句，GPT方案是<a href="https://wiki.archlinux.org/index.php/Unified_Extensible_Firmware_Interface" target="_blank" rel="noopener">Unified Extensible Firmware Interface</a> 规范的一部分。</p>
+<p><strong>然后，分区方案选哪种？</strong></p>
+<p>有个概念要分清，分区（比如/dev/sda1）和目录（比如/home）不是一回事，分区是对硬盘的逻辑划分，分区与目录建立联系的地方在挂载部分。本次安装系统时划分了3个分区，其中一个作为<a href="https://wiki.archlinux.org/index.php/EFI_system_partition" target="_blank" rel="noopener">EFI system partition</a>（ESP 大小为512M），另外两个用来挂载根目录和home目录。记得指定分区格式分别为EFI System partition，Root partition (x86-64)和/home partition。在GPT方案中，<a href="https://en.wikipedia.org/wiki/GUID_Partition_Table#Partition_Type_GUIDs" target="_blank" rel="noopener">对每个分区指定分区类型后使得他们在分区表中都有一个唯一的GUID</a>。</p>
+<p><strong>最后，用哪个分区工具？</strong></p>
+<p>本次使用的是<a href="https://wiki.archlinux.org/index.php/Fdisk" target="_blank" rel="noopener">fdisk</a>，其他工具也可参考<a href="https://wiki.archlinux.org/index.php/Partitioning#Partitioning_tools" target="_blank" rel="noopener">ArchWiki中的Partitioning tools</a>。</p>
+<h3 id="2-2-Format-the-partitions"><a href="#2-2-Format-the-partitions" class="headerlink" title="2.2. Format the partitions"></a>2.2. Format the partitions</h3><blockquote>
+<p>Once the partitions have been created, each must be formatted with an appropriate <a href="https://wiki.archlinux.org/index.php/File_system" target="_blank" rel="noopener">file system</a>. </p>
+</blockquote>
+<p>在2.1中解释什么是分区的时候说到，每一个分区都是一个独立的文件系统。同时，每个分区只有经过格式化（指定该分区的文件系统类型，即make file system mkfs）之后才真正成为一个可以存数据的文件系统。</p>
+<p>简单说一下什么是文件系统：不同的文件系统的区别大概就像不同管理方式的仓库。虽然存的都是数据，但是组织文件的形式和结构是不一样的。因此，对于一块硬盘，如果无法知道文件系统的类型，是无法解读其中的数据的。</p>
+<p>另外，ESP文件系统一般需要FAT32格式，其他根目录和home目录一般需要EXT4格式。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># mkfs = make file system</span><br>$ mkfs.vfat -F32 /dev/sda1<br>$ mkfs.ext4 /dev/sda2<br></code></pre></td></tr></table></figure>
+<h3 id="2-3-Mount-the-file-systems"><a href="#2-3-Mount-the-file-systems" class="headerlink" title="2.3. Mount the file systems"></a>2.3. Mount the file systems</h3><p>挂载比较简单，也是参考2.2中的那篇文章。本次安装采用的是符合UEFI规范的固件（firmware），打算ESP挂载到了/mnt/boot上。挂载部分的具体操作查看<a href="https://wiki.archlinux.org/index.php/File_systems#Mount_a_file_system" target="_blank" rel="noopener">ArchWiki的Mount a file system</a>。</p>
+<h3 id="2-4-写入系统文件"><a href="#2-4-写入系统文件" class="headerlink" title="2.4. 写入系统文件"></a>2.4. 写入系统文件</h3><p>可以CD系统中通过</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">$ pacstrap /mnt base linux linux-firmware<br></code></pre></td></tr></table></figure>
+<p>向/mnt写入所需的系统文件，<strong>建议是base，linux和linux-firmware都要安装。</strong></p>
+<p>当然你也可以通过<code>arch-chroot /mnt</code>到/mnt目录下使用<code>pacman -S</code>分别安装刚刚提到的3个包。</p>
+<h2 id="3-部署系统"><a href="#3-部署系统" class="headerlink" title="3. 部署系统"></a>3. 部署系统</h2><p>部署系统的目的为：设置正确的引导方式，使系统能正常启动和做一些必要的基础配置，比如网络。</p>
+<p>额外插一步，通过genfstab（generate file system table）将分区表写入到硬盘当中，以便于程序启动的时候systemd会从fstab中读取分区信息自动挂载。</p>
+<blockquote>
+<p>One can use genfstab to generate fstab entries for mounted partitions given a  filesystem root.</p>
+</blockquote>
+<h3 id="3-1-Boot-process"><a href="#3-1-Boot-process" class="headerlink" title="3.1. Boot process"></a>3.1. Boot process</h3><p>这里只说从启动固件到发射内核部分，更详细的内容看<a href="https://wiki.archlinux.org/index.php/Arch_boot_process" target="_blank" rel="noopener">Arch boot process</a>。</p>
+<p>机器通电后，固件就会启动，这里的固件是UEFI类型的。做完一系列的自检后就会通过NVRAM中存的boot entries（或许是.efi文件地址？）来找到ESP分区下的.efi文件，启动bootloader（本文为GRUB）。如果启动项（boot entry）是一块硬盘，那么固件会直接到fallback boot path <code>esp\EFI\BOOT\BOOTX64.EFI</code>中去找。如果只有1个启动项，建议就放在<code>esp\EFI\BOOT\BOOTX64.EFI</code>路径下。如果找不到就启动UEFI shell等待用户指定再启动。</p>
+<p>lanch firmware(UEFI) —&gt; lanch  bootloader(GRUB) —&gt; lanuch kernal &amp; initial RAM disk</p>
+<h3 id="3-2-安装GRUB"><a href="#3-2-安装GRUB" class="headerlink" title="3.2. 安装GRUB"></a>3.2. 安装GRUB</h3><p>具体过程补赘述，可以看<a href="https://wiki.archlinux.org/index.php/GRUB#UEFI_systems" target="_blank" rel="noopener">GRUB</a>。</p>
+<p>要补充的就以下几点：</p>
+<ol>
+<li>GRUB安装时会往NVRAM中写记录（entry）。</li>
+<li>/boot/grub目录是GRUB自己的主要目录，一些配置文件什么的都在这里面。生成的esp/EFI路径下的各个的.efi文件是为了给UEFI启动GRUB用的。</li>
+<li>别忘了配置文件&amp;_&amp;</li>
+</ol>
+<h3 id="3-3-Initramfs"><a href="#3-3-Initramfs" class="headerlink" title="3.3. Initramfs"></a>3.3. Initramfs</h3><p>这部分不懂，比着葫芦画瓢。</p>
+<h3 id="3-4-Network-configuration"><a href="#3-4-Network-configuration" class="headerlink" title="3.4. Network configuration"></a>3.4. Network configuration</h3><p>只需安装1个<a href="https://wiki.archlinux.org/index.php/Network_configuration#Network_managers" target="_blank" rel="noopener">Network managers</a>即可，本次选择的是带GUI的NetworkManage，安装完成后记得用systemctl设置开机自启。详细的步骤可以看<a href="https://www.youtube.com/watch?v=lhhA9KsoyT4" target="_blank" rel="noopener">这里</a>。</p>
+<h2 id="4-说在后面"><a href="#4-说在后面" class="headerlink" title="4. 说在后面"></a>4. 说在后面</h2><p>本次安装在VirtualBox中，VirtualBox自身有些问题，我猜测是无法将boot entry写入NVRAM中，还没来得及验证。需要做些设置，具体看<a href="https://www.youtube.com/watch?v=YCegkcVheJA" target="_blank" rel="noopener">这里</a>，此外也可以设置fallback boot path，上文已经提到了。另外一个参考资料：<a href="https://www.youtube.com/watch?v=SVFgHPXBVug" target="_blank" rel="noopener">How To: VirtualBox EFI Arch Linux</a>。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Linux%E6%93%8D%E4%BD%9C/">Linux操作</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/">虚拟机</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-NC-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/install-gui-about-archlinux.html">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ArchLinux安装GUI</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/factorial-number-p1591-in-luogu.html">
+                        <span class="hidden-mobile">洛谷P1591阶乘数码</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
