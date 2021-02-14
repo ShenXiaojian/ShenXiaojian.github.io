@@ -172,7 +172,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      228 字
+      252 字
     </span>
   
 
@@ -224,6 +224,8 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">Acquire::http::proxy <span class="hljs-string">"http://server:port"</span>;<br></code></pre></td></tr></table></figure>
 <p>此外，如果你的协议是<code>socks</code>，记得用<code>socks5h</code>，即：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">Acquire::http::proxy <span class="hljs-string">"socks5h://server:port"</span>;<br></code></pre></td></tr></table></figure>
+<p>例如流量通过<code>socks5</code>协议走本机的1080端口：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">Acquire::http::proxy <span class="hljs-string">"socks5h://127.0.0.1:1080"</span>;<br></code></pre></td></tr></table></figure>
 <p>此外，需要注意的是，设置之后永久生效。如果不想用，将<code>my_proxy</code>中新增的那行注释掉，或者直接把<code>my_proxy</code>文件删掉即可。</p>
 
             </div>

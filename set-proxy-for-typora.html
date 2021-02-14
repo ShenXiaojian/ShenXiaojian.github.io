@@ -172,7 +172,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      142 字
+      190 字
     </span>
   
 
@@ -182,7 +182,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      2
        分钟
     </span>
   
@@ -218,9 +218,13 @@
               <h2 id="1-单次代理"><a href="#1-单次代理" class="headerlink" title="1. 单次代理"></a>1. 单次代理</h2><p>参考typora官方的<a href="https://support.typora.io/Launch-Arguments/" target="_blank" rel="noopener">Launch Arguments (Windows / Linux)</a>可以知道，在启动时指定<code>--proxy-server</code>参数可使<strong>本次启动的typora的流量</strong>走指定的代理，具体如下：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">typora --proxy-server=address:port<br></code></pre></td></tr></table></figure>
 <p>需要注意的是<code>address:port</code>部分要指定传输的协议，如<code>http</code>，<code>socks5</code>等。</p>
+<p>例如，走本机的1080端口并采用<code>socks5</code>协议：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">typora --proxy-server=socks5://127.0.0.1:1080<br></code></pre></td></tr></table></figure>
 <h2 id="2-持续代理"><a href="#2-持续代理" class="headerlink" title="2. 持续代理"></a>2. 持续代理</h2><p>若需要每次打开typora都自动开启代理，修改typora的配置文件即可。将<code>flag</code>对象下内容修改如下：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-string">"flags"</span>: [[<span class="hljs-string">"proxy-server"</span>, <span class="hljs-string">"address:port"</span>]]<br></code></pre></td></tr></table></figure>
 <p><strong>再次提醒</strong>：<code>address:port</code>部分要指定传输的协议，如<code>http</code>，<code>socks5</code>等。</p>
+<p>例如，走本机的1080端口，并采用<code>socks5</code>协议：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-string">"flags"</span>: [[<span class="hljs-string">"proxy-server"</span>, <span class="hljs-string">"socks5://127.0.0.1:1080"</span>]]<br></code></pre></td></tr></table></figure>
 
             </div>
             <hr>
