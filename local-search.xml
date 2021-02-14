@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>conda使用笔记</title>
+    <link href="/conda-notes.html"/>
+    <url>/conda-notes.html</url>
+    
+    <content type="html"><![CDATA[<h2 id="install-package"><a href="#install-package" class="headerlink" title="install package"></a>install package</h2><p>参考<a href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-pkgs.html" target="_blank" rel="noopener">这里</a>。</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">conda install --name myenv scipy<br></code></pre></td></tr></table></figure><p>首先需要指定给哪个环境安装包（例如上例中的环境名称为<code>myenv</code>），但如果当前路径已经在某个<code>conda</code>环境中便不需要再通过<code>--name myenv</code>指定。</p><h3 id="如果需要的包找不到怎么办"><a href="#如果需要的包找不到怎么办" class="headerlink" title="如果需要的包找不到怎么办"></a>如果需要的包找不到怎么办</h3><blockquote><p>If a package is not available from conda or Anaconda.org, you may be able to find and install the package via <strong>conda-forge</strong> or with another package manager like <strong>pip</strong>.</p><p>Both pip and conda are included in Anaconda and Miniconda, so you do not need to install them separately.</p><p>Conda environments replace virtualenv, so there is no need to activate a virtualenv before using pip.</p></blockquote><p>若需要的包找不到，可以通过添加别的conda频道来扩充搜索包的范围，或者直接通过pip安装。</p><h4 id="添加-conda-forge的channel"><a href="#添加-conda-forge的channel" class="headerlink" title="添加 conda-forge的channel"></a>添加 conda-forge的channel</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">conda config --append channels conda-forge<br></code></pre></td></tr></table></figure><h4 id="直接在当前环境中通过pip安装"><a href="#直接在当前环境中通过pip安装" class="headerlink" title="直接在当前环境中通过pip安装"></a>直接在当前环境中通过pip安装</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">pip install package_name<br></code></pre></td></tr></table></figure><h2 id="切换环境"><a href="#切换环境" class="headerlink" title="切换环境"></a>切换环境</h2><p>切换环境，即激活（activate）指定的环境：</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">conda activate myenv<br></code></pre></td></tr></table></figure><p>例如，上例中将当前环境切换为名称为<code>myenv</code>的环境。</p><h2 id="添加channel"><a href="#添加channel" class="headerlink" title="添加channel"></a>添加channel</h2><p><code>new_channel</code>置于最高优先级：</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">conda config --add channels new_channel<br></code></pre></td></tr></table></figure><p><code>new_channel</code>置于最低优先级：</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">conda config --append channels new_channel<br></code></pre></td></tr></table></figure><p><code>new_channel</code>指新增<code>channel</code>的名称，可以去该channel对应的官网上查看。</p><p>具体的例子可以看上文中的<code>添加conda-forge的channel</code>。</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>制作WinPE</title>
     <link href="/make-winpe.html"/>
     <url>/make-winpe.html</url>
