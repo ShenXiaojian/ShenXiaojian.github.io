@@ -172,7 +172,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      406 字
+      407 字
     </span>
   
 
@@ -221,7 +221,7 @@
 <h2 id="copype"><a href="#copype" class="headerlink" title="copype"></a>copype</h2><p>首先通过<code>copype</code>命令创建WinPE所需的工作目录，为下一步的<code>MakeWinPEMededia</code>做准备。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">copype amd64 C:\WinPE_amd64<br></code></pre></td></tr></table></figure>
 <p>说明：<code>amd64</code>指制作的WinPE是64位的，<code>C:\WinPE_amd64</code>就是前面提到地创建WinPE所需的工作目录。</p>
-<h3 id="修改copype"><a href="#修改copype" class="headerlink" title="修改copype"></a>修改copype</h3><p>本来是无需这一步的，但是上面那条命令报错说找不到相应的架构之类的，便需要修改<code>copy.cmd</code>文件了（历史遗留问题），文件路径为<code>C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\cmd.exe</code>。修改如下：</p>
+<h3 id="修改copype-cmd"><a href="#修改copype-cmd" class="headerlink" title="修改copype.cmd"></a>修改copype.cmd</h3><p>本来是无需这一步的，但是上面那条命令报错说找不到相应的架构之类的，便需要修改<code>copy.cmd</code>文件了（历史遗留问题），文件路径为<code>C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\copype.cmd</code>。修改如下：</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs powershell">rem 添加如下两个变量<br>set WinPERoot=C:\Program Files (x86)\Windows Kits\<span class="hljs-number">10</span>\Assessment and Deployment Kit\Windows Preinstallation Environment<br>set OSCDImgRoot=C:\Program Files (x86)\Windows Kits\<span class="hljs-number">10</span>\Assessment and Deployment Kit\Deployment Tools<br>rem 修改如下两个变量的值<br>set SOURCE=%WinPERoot%\%WINPE_ARCH%<br>set FWFILESROOT=%OSCDImgRoot%\%WINPE_ARCH%\Oscdimg<br></code></pre></td></tr></table></figure>
 <h2 id="MakeWinPEMedia"><a href="#MakeWinPEMedia" class="headerlink" title="MakeWinPEMedia"></a>MakeWinPEMedia</h2><p>创建WinPE到介质中：</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">MakeWinPEMedia /UFD C:\WinPE_amd64 P:<br></code></pre></td></tr></table></figure>
