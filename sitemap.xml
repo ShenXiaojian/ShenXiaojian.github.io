@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.shenxiaojian.com/icon-adjustment-in-ubuntu-gnome-desktop-environment.html</loc>
+    
+    <lastmod>2021-02-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.shenxiaojian.com/awesome-command-line-utilities-in-linux.html</loc>
+    
+    <lastmod>2021-02-16</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.shenxiaojian.com/conda-notes.html</loc>
     
     <lastmod>2021-02-14</lastmod>
@@ -163,13 +177,6 @@
   </url>
   
   <url>
-    <loc>https://www.shenxiaojian.com/null.html</loc>
-    
-    <lastmod>2021-01-24</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.shenxiaojian.com/modular-arithmetic-system-and-complement.html</loc>
     
     <lastmod>2021-01-24</lastmod>
@@ -247,13 +254,6 @@
   </url>
   
   <url>
-    <loc>https://www.shenxiaojian.com/icon-adjustment-in-ubuntu-gnome-desktop-environment.html</loc>
-    
-    <lastmod>2021-01-24</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.shenxiaojian.com/nested-subqueries-with-exists-in-sql.html</loc>
     
     <lastmod>2021-01-24</lastmod>
@@ -317,21 +317,7 @@
   </url>
   
   <url>
-    <loc>https://www.shenxiaojian.com/awesome-command-line-utilities-in-linux.html</loc>
-    
-    <lastmod>2021-01-24</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.shenxiaojian.com/hexo-next-theme-adds-comment-feature.html</loc>
-    
-    <lastmod>2021-01-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.shenxiaojian.com/installation-summary-about-archlinux.html</loc>
     
     <lastmod>2021-01-24</lastmod>
     
